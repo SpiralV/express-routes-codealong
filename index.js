@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 // app middlewares
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })) // lets express use the req.body
 
 // define our routes
 app.get('/', (req, res) => {
@@ -50,7 +50,11 @@ app.get('/greet/:firstName/:lastName', (req, res) => {
   res.send(`oh hello ${req.params.firstName} ${req.params.lastName}`)
 })
 
-
+app.get('/add/:x/:y', (req, res) => {
+  const x = parseInt(req.params.x)
+  const y = parseInt(req.params.y)
+  res.send(`${x + y}`)
+})
 
 // listen on a port
 app.listen(PORT, () => {
